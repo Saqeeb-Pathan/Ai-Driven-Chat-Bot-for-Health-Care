@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealthAware AI — Sign In / Register</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <main class="auth-wrap">
+    <div class="brand">
+      <div class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 4v5a4 4 0 0 0 8 0V4M5 4h3M13 4h3M19 12a3 3 0 1 0 0 6h1a2 2 0 0 1 2 2" stroke="#40ffe9" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M9 13.5V17a5 5 0 0 0 10 0" stroke="#40ffe9" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1>HealthAware AI</h1>
+    </div>
+
+    <section class="card">
+      <!-- Tabs -->
+      <div class="tabs" role="tablist">
+        <button id="tab-login" class="tab active" role="tab" aria-selected="true" aria-controls="panel-login">Sign In</button>
+        <button id="tab-register" class="tab" role="tab" aria-selected="false" aria-controls="panel-register">Create Account</button>
+      </div>
+
+      <!-- Alerts -->
+      <div id="alertBox" class="alert" role="status" aria-live="polite"></div>
+
+      <!-- Login -->
+      <form id="loginForm" class="form active" role="tabpanel" aria-labelledby="tab-login">
+        <label class="field">
+          <span class="label">Email</span>
+          <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+        </label>
+
+        <label class="field password">
+          <span class="label">Password</span>
+          <input id="loginPassword" type="password" name="password" placeholder="••••••••" autocomplete="current-password" required minlength="6" />
+          <button class="eye" type="button" data-target="loginPassword" aria-label="Show or hide password">
+            <svg viewBox="0 0 24 24" class="i"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="currentColor" fill="none"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+          </button>
+        </label>
+
+        <div class="row">
+          <label class="check">
+            <input type="checkbox" name="remember" />
+            <span>Remember me</span>
+          </label>
+          <a class="link" href="#" title="Reset password (placeholder)">Forgot password?</a>
+        </div>
+
+        <button class="cta" type="submit">Sign In</button>
+      </form>
+
+      <!-- Register -->
+      <form id="registerForm" class="form" role="tabpanel" aria-labelledby="tab-register">
+        <label class="field">
+          <span class="label">Full name</span>
+          <input type="text" name="name" placeholder="Jane Doe" autocomplete="name" required />
+        </label>
+
+        <label class="field">
+          <span class="label">Email</span>
+          <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+        </label>
+
+        <label class="field password">
+          <span class="label">Password</span>
+          <input id="regPassword" type="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required />
+          <button class="eye" type="button" data-target="regPassword" aria-label="Show or hide password">
+            <svg viewBox="0 0 24 24" class="i"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="currentColor" fill="none"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+          </button>
+          <div class="meter" aria-hidden="true"><span id="pwdBar"></span></div>
+          <div id="pwdHint" class="hint">Use 8+ chars with upper/lowercase, number, and symbol.</div>
+        </label>
+
+        <label class="field password">
+          <span class="label">Confirm password</span>
+          <input id="regConfirm" type="password" name="confirm" placeholder="Repeat password" autocomplete="new-password" required />
+          <button class="eye" type="button" data-target="regConfirm" aria-label="Show or hide password">
+            <svg viewBox="0 0 24 24" class="i"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" stroke="currentColor" fill="none"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+          </button>
+          <div id="matchHint" class="hint"></div>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" name="terms" required />
+          <span>I agree to the Terms and Privacy Policy</span>
+        </label>
+
+        <button class="cta" type="submit">Create Account</button>
+      </form>
+
+      <div class="switch">
+        <span>Don’t have an account?</span>
+        <button id="switchToRegister" type="button" class="link">Register</button>
+        <span>•</span>
+        <span>Already have one?</span>
+        <button id="switchToLogin" type="button" class="link">Sign In</button>
+      </div>
+    </section>
+
+    <footer class="foot">For demo only. Replace mock API in auth.js with your backend.</footer>
+  </main>
+
+  <script src="auth.js" defer></script>
+</body>
+</html>

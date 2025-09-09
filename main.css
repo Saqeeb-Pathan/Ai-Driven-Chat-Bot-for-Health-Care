@@ -1,0 +1,272 @@
+/* HealthAware AI Design System - Dark theme with health-focused colors */
+
+:root {
+    /* Dark theme base colors */
+    --background: hsl(220, 27%, 8%);
+    --foreground: hsl(220, 9%, 92%);
+
+    /* Card and surface colors */
+    --card: hsl(220, 27%, 12%);
+    --card-foreground: hsl(220, 9%, 92%);
+
+    /* Health-focused primary colors - medical teal/blue */
+    --primary: hsl(187, 85%, 53%);
+    --primary-foreground: hsl(220, 27%, 8%);
+    --primary-glow: hsl(187, 85%, 65%);
+
+    /* Secondary colors - subtle blue */
+    --secondary: hsl(220, 27%, 16%);
+    --secondary-foreground: hsl(220, 9%, 92%);
+
+    /* Muted colors for subtle elements */
+    --muted: hsl(220, 27%, 16%);
+    --muted-foreground: hsl(220, 9%, 65%);
+
+    /* Accent colors - vibrant health green */
+    --accent: hsl(142, 72%, 50%);
+    --accent-foreground: hsl(220, 27%, 8%);
+
+    /* Health status colors */
+    --success: hsl(142, 72%, 50%);
+    --warning: hsl(45, 93%, 58%);
+    --destructive: hsl(0, 84%, 60%);
+
+    /* Interactive elements */
+    --border: hsl(220, 27%, 20%);
+    --input: hsl(220, 27%, 16%);
+    --ring: hsl(187, 85%, 53%);
+
+    /* Health-themed gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
+    --gradient-health: linear-gradient(135deg, var(--accent), var(--primary));
+    --gradient-bg: linear-gradient(180deg, var(--background), hsl(220, 27%, 10%));
+
+    /* Shadows */
+    --shadow-health: 0 10px 30px -10px hsla(187, 85%, 53%, 0.2);
+    --shadow-glow: 0 0 40px hsla(187, 85%, 65%, 0.15);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--gradient-bg);
+    color: var(--foreground);
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Layout */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid hsla(220, 27%, 20%, 0.5);
+    background: hsla(220, 27%, 12%, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon i {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--primary-foreground);
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.role-text {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.role-select {
+    width: 6rem;
+    height: 2rem;
+    font-size: 0.75rem;
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 0 0.5rem;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    height: calc(100vh - 80px);
+}
+
+.chat-panel {
+    flex: 1;
+    border-right: 1px solid hsla(220, 27%, 20%, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message-container {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.message-container.bot {
+    align-self: flex-start;
+}
+
+.message-container.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar i {
+    width: 1rem;
+    height: 1rem;
+}
+
+.message-bubble {
+    background: hsla(220, 27%, 12%, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsla(220, 27%, 20%, 0.5);
+    border-radius: 1rem;
+    padding: 1rem;
+    max-width: 24rem;
+    box-shadow: var(--shadow-health);
+    transition: var(--transition-smooth);
+}
+
+.message-bubble:hover {
+    box-shadow: var(--shadow-glow);
+    border-color: hsla(187, 85%, 53%, 0.2);
+}
+
+.message-bubble p {
+    font-size: 0.875rem;
+    color: var(--card-foreground);
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.suggestion-avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.suggestion-avatar i {
+    width: 0.75rem;
+    height: 0.75rem;
+    color: var(--accent-foreground);
+}
+
+.suggestion-text {
+    font-size: 0.875rem;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.health-widgets {
+    width: 24rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    background: hsla(220, 27%, 12%, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+/* Utility classes */
+.gradient-primary {
+    background: var(--gradient-primary);
+}
+
+.gradient-health {
+    background: var(--gradient-health);
+}
+
+.health-card {
+    background: hsla(220, 27%, 12%, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsla(220, 27%, 20%, 0.5);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-health);
+    transition: var(--transition-smooth);
+}
+
+.health-card:hover {
+    box-shadow: var(--shadow-glow);
+    border-color: hsla(187, 85%, 53%, 0.2);
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthAware AI - Your Personal Health Assistant</title>
+    <meta name="description" content="AI-powered health and wellness platform with personalized tracking, nutrition analysis, and mindfulness tools">
+    <meta name="author" content="HealthAware AI">
+    
+    <meta property="og:title" content="HealthAware AI - Your Personal Health Assistant">
+    <meta property="og:description" content="AI-powered health and wellness platform with personalized tracking, nutrition analysis, and mindfulness tools">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="components.css">
+    
+    <!-- Lucide Icons -->
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-container">
+                    <div class="logo-icon gradient-primary">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <h1 class="app-title">HealthAware AI</h1>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                
+               
+                <a href="log.html"><button class="btn btn-outline btn-sm" id="quickTipsBtn">Log in</button></a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Chat Interface -->
+            <div class="chat-panel">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message-container bot">
+                        <div class="avatar gradient-health">
+                            <i data-lucide="bot"></i>
+                        </div>
+                        <div class="message-bubble">
+                            <p>Hi! I'm your Cybersecurity Awareness bot. Ask me anything about phishing, MFA, passwords, or safe browsing. You can also use the tools on the right.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="suggestion-item">
+                        <div class="suggestion-avatar gradient-health">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <span class="suggestion-text">Healthy meal ideas?</span>
+                    </div>
+                </div>
+
+                <!-- Quick Suggestions -->
+                <div class="quick-suggestions">
+                    <div class="suggestions-grid" id="suggestionsGrid">
+                        <button class="suggestion-btn" data-suggestion="How to spot if i have fever?">How to spot if i have fever?</button>
+                        <button class="suggestion-btn" data-suggestion="Is this medicine safe to take?">Is this medicine safe to take?</button>
+                        <button class="suggestion-btn" data-suggestion="Tips for better sleep?">Tips for better sleep?</button>
+                        <button class="suggestion-btn" data-suggestion="Should I use SMS or app-based MFA?">Should I use SMS or app-based MFA?</button>
+                        <button class="suggestion-btn" data-suggestion="Boost my energy naturally">Boost my energy naturally</button>
+                    </div>
+                    
+                    <div class="message-input-container">
+                        <input type="text" class="message-input" id="messageInput" placeholder="Ask about health related questions">
+                        <button class="btn gradient-primary" id="sendBtn">
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Emergency Notice -->
+                <div class="emergency-notice">
+                    <p>For medical emergencies, please contact emergency team immediately.</p>
+                </div>
+            </div>
+            
+            <!-- Right Panel - Health Widgets -->
+            <div class="health-widgets">
+                <!-- Health Tracker -->
+                <div class="widget health-card" id="healthTracker">
+                    <h3 class="widget-title">
+                        <div class="widget-icon gradient-primary">
+                            <i data-lucide="droplets"></i>
+                        </div>
+                        Daily Health Tracker
+                    </h3>
+                    
+                    <div class="widget-content">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i data-lucide="droplets"></i>
+                                Water Intake (oz):
+                            </label>
+                            <input type="number" class="form-input" id="waterIntake" placeholder="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i data-lucide="footprints"></i>
+                                Steps Today:
+                            </label>
+                            <input type="number" class="form-input" id="stepsToday" placeholder="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i data-lucide="moon"></i>
+                                Sleep Last Night (hours):
+                            </label>
+                            <input type="number" class="form-input" id="sleepHours" placeholder="0">
+                        </div>
+                        
+                        <button class="btn gradient-primary btn-full" id="logDataBtn">Analyze Data</button>
+                    </div>
+                </div>
+
+                <!-- Nutrition Analyzer -->
+                <div class="widget health-card" id="nutritionAnalyzer">
+                    <h3 class="widget-title">
+                        <div class="widget-icon gradient-health">
+                            <i data-lucide="apple"></i>
+                        </div>
+                        Nutrition Analyzer
+                    </h3>
+                    
+                    <div class="widget-content">
+                        <div class="search-container">
+                            <input type="text" class="form-input" id="nutritionSearch" placeholder="Scan barcode, ingredients or search...">
+                           
+                                
+                            </button>
+                        </div>
+                        
+                        <button class="btn gradient-health btn-full" id="analyzeBtn">
+                            <i data-lucide="search"></i>
+                            Analyze
+                        </button>
+                        
+                        <div class="info-box">
+                            <p>Scan or search for food items to get detailed nutritional information and health insights.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symptom Checker -->
+                <div class="widget health-card" id="symptomChecker">
+                    <h3 class="widget-title">
+                        <div class="widget-icon gradient-primary">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        Symptom Checker
+                    </h3>
+                    
+                    <div class="widget-content">
+                        <div class="search-container">
+                            <input type="text" class="form-input" id="symptomInput" placeholder="Enter a symptom...">
+                            <button class="btn btn-outline btn-icon" id="addSymptomBtn">
+                                <i data-lucide="plus"></i>
+                            </button>
+                        </div>
+
+                        <div class="common-symptoms">
+                            <p class="common-symptoms-label">Common symptoms:</p>
+                            <div class="symptoms-grid" id="commonSymptomsGrid">
+                                <button class="symptom-btn" data-symptom="Headache">Headache</button>
+                                <button class="symptom-btn" data-symptom="Fever">Fever</button>
+                                <button class="symptom-btn" data-symptom="Cough">Cough</button>
+                                <button class="symptom-btn" data-symptom="Fatigue">Fatigue</button>
+                                <button class="symptom-btn" data-symptom="Nausea">Nausea</button>
+                                <button class="symptom-btn" data-symptom="Dizziness">Dizziness</button>
+                                <button class="symptom-btn" data-symptom="Sore Throat">Sore Throat</button>
+                                <button class="symptom-btn" data-symptom="Chest Pain">Chest Pain</button>
+                                <button class="symptom-btn" data-symptom="Back Pain">Back Pain</button>
+                            </div>
+                        </div>
+
+                        <div class="selected-symptoms" id="selectedSymptomsContainer" style="display: none;">
+                            <p class="selected-symptoms-label">Selected symptoms:</p>
+                            <div class="selected-symptoms-list" id="selectedSymptomsList"></div>
+                        </div>
+
+                        <button class="btn gradient-primary btn-full" id="checkSymptomsBtn" disabled>
+                            <i data-lucide="stethoscope"></i>
+                            Check Symptoms
+                        </button>
+
+                        <div class="warning-box">
+                            <div class="warning-content">
+                                <i data-lucide="alert-triangle"></i>
+                                <div>
+                                    <strong>Medical Disclaimer:</strong> This tool is for informational purposes only and should not replace professional medical advice. For emergencies, contact emergency services immediately.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mindfulness Break -->
+                <div class="widget health-card" id="mindfulnessBreak">
+                    <h3 class="widget-title">
+                        <div class="widget-icon gradient-health">
+                            <i data-lucide="brain"></i>
+                        </div>
+                        Mindfulness Break
+                    </h3>
+                    
+                    <div class="widget-content">
+                        <button class="btn btn-outline btn-full mindfulness-btn" id="meditationBtn">
+                            <i data-lucide="play"></i>
+                            Start Guided Meditation
+                        </button>
+                        
+                        <div class="mindfulness-actions">
+                            <button class="btn btn-outline mindfulness-btn" id="loartQuizBtn">Loart Quiz</button>
+                            <button class="btn btn-outline mindfulness-btn accent" id="yogaBtn">
+                                <i data-lucide="zap"></i>
+                                Quick Yoga Stretch
+                            </button>
+                        </div>
+                        
+                        <div class="info-box accent">
+                            <p>Take a moment to relax and recharge your mind and body.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
